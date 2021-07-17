@@ -7,7 +7,7 @@ public class sudokuMain
     private final State gameState;
     private final int[][] grid;
 
-    public static final gridBounds = 9;
+    public static final int gridBounds = 9;
 
     public sudokuMain(State gameState, int[][] grid)
     {
