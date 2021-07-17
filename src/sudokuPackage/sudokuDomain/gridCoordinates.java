@@ -1,5 +1,7 @@
 package sudokuPackage.sudokuDomain;
 
+import java.util.Objects;
+
 public class gridCoordinates
 {
     private final int x, y;
@@ -27,8 +29,14 @@ public class gridCoordinates
 
         if(obj == null || getClass() != obj.getClass()) { return false; }
 
+        gridCoordinates next = (gridCoordinates) obj;
 
+        return x == next.x && y == next.y;
+    }
 
-
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(x, y);
     }
 }

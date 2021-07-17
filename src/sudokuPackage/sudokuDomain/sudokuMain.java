@@ -1,5 +1,7 @@
 package sudokuPackage.sudokuDomain;
 
+import sudokuPackage.constants.State;
+
 public class sudokuMain
 {
     private final State gameState;
