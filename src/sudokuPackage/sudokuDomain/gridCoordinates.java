@@ -19,9 +19,9 @@ public class gridCoordinates
     @Override
     public boolean equals(Object obj)
     {
-        if(this == obj) { return true; }
+        if(this == obj) return true;
 
-        if(obj == null || getClass() != obj.getClass()) { return false; }
+        if(obj == null || getClass() != obj.getClass()) return false;
 
         gridCoordinates next = (gridCoordinates) obj;
 

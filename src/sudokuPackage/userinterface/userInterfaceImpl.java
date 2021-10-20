@@ -2,6 +2,7 @@ package sudokuPackage.userinterface;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
+
 import sudokuPackage.sudokuDomain.gridCoordinates;
 
 import javafx.event.EventHandler;
@@ -10,10 +11,10 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.*;
 import javafx.scene.text.Font;
 
-import java.awt.*;
+
 import java.util.HashMap;
 
 public class userInterfaceImpl implements IUserInterfaceContract.View, EventHandler<KeyEvent>
@@ -69,8 +70,25 @@ public class userInterfaceImpl implements IUserInterfaceContract.View, EventHand
 
     }
 
+    /**
+     * Draws the board according to the previously stated dimensions above. Sets the
+     * background color to white (also previously stated)
+     *
+     * @param root
+     */
     private void drawBoard(Group root)
     {
+        Rectangle boardBackground = new Rectangle();
+
+        boardBackground.setX(BOARD_BOARDERS);
+        boardBackground.setY(BOARD_BOARDERS);
+
+        boardBackground.setWidth(X_Y);
+        boardBackground.setHeight(X_Y);
+
+        boardBackground.setFill(BOARD_BACKGROUND);
+
+        root.getChildren().addAll(boardBackground);         //MINUTE 34:37
 
     }
 
@@ -200,7 +218,7 @@ public class userInterfaceImpl implements IUserInterfaceContract.View, EventHand
         line.setHeight(height);
         line.setWidth(width);
 
-        line.setFill(javafx.scene.paint.Color.BLACK);
+        line.setFill(Color.BLACK);
 
         return line;
     }
