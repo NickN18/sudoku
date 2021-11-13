@@ -1,8 +1,15 @@
 package sudokuPackage.userinterface;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Background;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import sudokuPackage.SudokuApp;
+import sudokuPackage.constants.GameState;
 import sudokuPackage.sudokuDomain.gridCoordinates;
 
 import javafx.event.EventHandler;
@@ -13,11 +20,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.*;
 import javafx.scene.text.Font;
+import sudokuPackage.sudokuDomain.sudokuMain;
 
 
+import java.awt.*;
 import java.util.HashMap;
 
-public class userInterfaceImpl implements IUserInterfaceContract.View, EventHandler<KeyEvent>
+public abstract class userInterfaceImpl implements IUserInterfaceContract.View, EventHandler<KeyEvent>
 {
 
     private final Stage stage;
@@ -36,7 +45,7 @@ public class userInterfaceImpl implements IUserInterfaceContract.View, EventHand
     private static final Color WINDOW_BACKGROUND = Color.BLACK;
     private static final Color BOARD_BACKGROUND = Color.WHITE;
 
-    private static final String title = "Sudoku";
+    private static final String TITLE = "Sudoku";
 
     public userInterfaceImpl(Stage stage)
     {
@@ -61,12 +70,19 @@ public class userInterfaceImpl implements IUserInterfaceContract.View, EventHand
 
     private void drawBackground(Group root)
     {
-
-
+        Scene scene = new Scene(root, WINDOW_X, WINDOW_Y);
+        scene.setFill(WINDOW_BACKGROUND);
+        stage.setScene(scene);
     }
 
     private void writeTitle(Group root)
     {
+        Text title = new Text(235, 690, TITLE);
+        title.setFill(Color.WHITE);
+        Font titleFont = new Font(43);
+        title.setFont(titleFont);
+        root.getChildren().add(title);
+
 
     }
 
@@ -232,18 +248,55 @@ public class userInterfaceImpl implements IUserInterfaceContract.View, EventHand
     @Override
     public void updateSquare(int row, int col, int input)
     {
+        SudokuTextField tile = textFieldCoordinates.get(new gridCoordinates(row, col));
+
+        String value = Integer.toString(input);
+
+        if(value.equals("0")) value = "";
+
+        tile.textProperty().set(value);
 
     }
 
     @Override
-    public void updateBoard(SudokuGame game)
+    public void updateBoard(sudokuMain game)
     {
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                SudokuTextField tile = textFieldCoordinates.get(new gridCoordinates(i, j));
+
+                String value = Integer.toString(game.getCopyOfGridState()[i][j]);
+
+                if(value.equals("0")) value = "";
+
+                tile.setText(value);
+
+                if(game.getGameState() == GameState.NEW)
+                {
+                    if(value.equals(""))
+                    {
+                        tile.setStyle("-fx-opacity: 1;");
+                        tile.setDisable(false);
+                    } else
+                    {
+                        tile.setStyle("-fx-opacity: 0.8;");
+                        tile.setDisable(true);
+
+                    }
+
+                }
+            }
+        }
 
     }
 
     @Override
     public void showDialog(String message)
     {
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.OK);
+
 
     }
 

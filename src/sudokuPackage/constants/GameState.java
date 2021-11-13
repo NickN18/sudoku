@@ -1,6 +1,6 @@
 package sudokuPackage.constants;
 
-public enum State
+public enum GameState
 {
     FINISHED,
     ACTIVE,

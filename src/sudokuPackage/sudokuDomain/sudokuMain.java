@@ -1,21 +1,19 @@
 package sudokuPackage.sudokuDomain;
 
-import sudokuPackage.constants.State;
-
-public class sudokuMain
+public class sudokuMain<GameState>
 {
-    private final State gameState;
+    private final GameState gameState;
     private final int[][] grid;
 
     public static final int gridBounds = 9;
 
-    public sudokuMain(State gameState, int[][] grid)
+    public sudokuMain(GameState gameState, int[][] grid)
     {
         this.gameState = gameState;
         this.grid = grid;
     }
 
-    public State getGameState() { return gameState; }
+    public GameState getGameState() { return gameState; }
 
     public int[][] getGrid() { return grid; }
 
