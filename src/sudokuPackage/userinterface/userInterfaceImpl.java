@@ -296,19 +296,31 @@ public abstract class userInterfaceImpl implements IUserInterfaceContract.View, 
     public void showDialog(String message)
     {
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.OK);
+        dialog.showAndWait();
 
+        if(dialog.getResult() == ButtonType.OK) listener.onClick();
 
     }
 
     @Override
     public void showError(String message)
     {
+        Alert dialog = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
+        dialog.showAndWait();
 
     }
 
     @Override
     public void handle(KeyEvent keyEvent)
     {
+        if(keyEvent.getEventType() == KeyEvent.KEY_PRESSED)
+        {
+            if(keyEvent.getText().matches("[0-9]"))
+            {
+                int value = Integer.parseInt(keyEvent.getText());
+
+            }
+        }
 
     }
 }
