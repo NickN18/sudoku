@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 
 import javafx.scene.paint.Color;
@@ -82,7 +83,6 @@ public abstract class userInterfaceImpl implements IUserInterfaceContract.View, 
         Font titleFont = new Font(43);
         title.setFont(titleFont);
         root.getChildren().add(title);
-
 
     }
 
@@ -318,9 +318,23 @@ public abstract class userInterfaceImpl implements IUserInterfaceContract.View, 
             if(keyEvent.getText().matches("[0-9]"))
             {
                 int value = Integer.parseInt(keyEvent.getText());
-
+                handleInput(value, keyEvent.getSource());
+            } else if(keyEvent.getCode() == KeyCode.BACK_SPACE)
+            {
+                handleInput(0, keyEvent.getSource());
+            } else
+            {
+                ((TextField) keyEvent.getSource()).setText("");
             }
         }
+        keyEvent.consume();
 
     }
+
+    public void handleInput(int value, Object source)
+    {
+        listener.onInput(((SudokuTextField) source).getRow(),  ((SudokuTextField) source).getCol(), value);
+
+    }
+
 }
