@@ -14,6 +14,30 @@ public class GameGenerator
         return unsolveGame(getSolvedGame());
     }
 
+    private static int[][] unsolveGame(int[][] solvedGame)
+    {
+        Random random = new Random(System.currentTimeMillis());
+
+        boolean solvable = false;
+        int[][] solvableArray = new int[sudokuMain.gridBounds][sudokuMain.gridBounds];
+
+        while(solvable == false)
+        {
+            SudokuUtils.copSudokuArrayValues(solvedGame, solvableArray);
+
+            int index = 0;
+
+            while(index < 40)
+            {
+
+
+            }
+        }
+
+    }
+
+
+
     private static int[][] getSolvedGame()
     {
         Random random = new Random(System.currentTimeMillis());
@@ -49,10 +73,27 @@ public class GameGenerator
                         i = 1;
                     }
                 }
+
+                int xCoord = random.nextInt(sudokuMain.gridBounds);
+                int yCoord = random.nextInt(sudokuMain.gridBounds);
+
+                if(newGrid[xCoord][yCoord] == 0)
+                {
+                    newGrid[xCoord][yCoord] = i;
+
+                    if(GameLogic.sudokuIsInvalid(newGrid))
+                    {
+                        newGrid[xCoord][yCoord] = 0;
+                        interrupt++;
+                    } else
+                    {
+                        allocTracker.add(new gridCoordinates(xCoord, yCoord));
+                        allocations++;
+                    }
+                }
             }
          }
-
-        return new int[0][];
+        return newGrid;
     }
 
     public static void clearArray(int[][] newGrid)
