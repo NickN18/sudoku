@@ -29,10 +29,24 @@ public class GameGenerator
 
             while(index < 40)
             {
+                int xCoord = random.nextInt(sudokuMain.gridBounds);
+                int yCoord = random.nextInt(sudokuMain.gridBounds);
 
-
+                if(solvableArray[xCoord][yCoord] != 0) {
+                    solvableArray[xCoord][yCoord] = 0;
+                    index++;
+                }
             }
+
+            int[][] toBeSolved = new int[sudokuMain.gridBounds][sudokuMain.gridBounds];
+
+            SudokuUtils.copSudokuArrayValues(solvableArray, toBeSolved);
+
+            solvable = SudokuSolver.puzzleIsSolvable(toBeSolved);
+
         }
+
+        return solvableArray;
 
     }
 
