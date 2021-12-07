@@ -57,8 +57,18 @@ public class GameGenerator
 
     public static void clearArray(int[][] newGrid)
     {
+        for(int i = 0; i < sudokuMain.gridBounds; i++)
+        {
+            for(int j = 0; j < sudokuMain.gridBounds; j++)
+            {
+                newGrid[i][j] = 0;
+            }
+        }
 
     }
 
 
 }
+
+
+
