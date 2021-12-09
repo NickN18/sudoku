@@ -1,6 +1,7 @@
 package sudokuPackage.userinterface.logic;
 
 import sudokuPackage.SudokuApp;
+import sudokuPackage.computationalLogic.GameLogic;
 import sudokuPackage.constants.GameState;
 import sudokuPackage.constants.gameMessages;
 import sudokuPackage.sudokuDomain.storage;
