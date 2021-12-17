@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sudokuPackage.userinterface.IUserInterfaceContract;
+import sudokuPackage.userinterface.userInterfaceImpl;
 
 public class SudokuApp extends Application {
 
@@ -14,7 +15,15 @@ public class SudokuApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        uiImpl = new UserInterfaceImpl(primaryStage);
+        uiImpl = new userInterfaceImpl(primaryStage)
+        {
+            @Override
+            public void updateBoard(SudokuGame game)
+            {
+
+
+            }
+        };
     }
 
 

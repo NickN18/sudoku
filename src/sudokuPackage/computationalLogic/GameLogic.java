@@ -6,6 +6,7 @@ import sudokuPackage.constants.Rows;
 import sudokuPackage.sudokuDomain.sudokuMain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameLogic
@@ -24,12 +25,44 @@ public class GameLogic
     }
 
 
-    private static boolean sudokuIsInvalid(int[][] grid)
+    public static boolean sudokuIsInvalid(int[][] grid)
     {
         if(rowsAreInvalid(grid)) return true;
         if(columnsAreInvalid(grid)) return true;
         if(squaresAreInvalid(grid)) return true;
         else return false;
+    }
+
+    private static boolean rowsAreInvalid(int[][] grid) {
+        for(int i = 0; i < sudokuMain.gridBounds; i++)
+        {
+            List<Integer> row = new ArrayList<>();
+
+            for(int j = 0; j < sudokuMain.gridBounds; j++)
+            {
+                row.add(grid[j][i]);
+            }
+
+            if(collectionHasRepeats(row)) return true;
+        }
+
+        return false;
+    }
+
+    private static boolean columnsAreInvalid(int[][] grid) {
+        for(int i = 0; i < sudokuMain.gridBounds; i++)
+        {
+            List<Integer> row = new ArrayList<>();
+
+            for(int j = 0; j < sudokuMain.gridBounds; j++)
+            {
+                row.add(grid[i][j]);
+            }
+
+            if(collectionHasRepeats(row)) return true;
+        }
+
+        return false;
     }
 
     private static boolean squaresAreInvalid(int[][] grid)
@@ -49,7 +82,22 @@ public class GameLogic
                 if(squareIsInvalid(0, 0, grid)) return true;
                 if(squareIsInvalid(0, 3, grid)) return true;
                 if(squareIsInvalid(0, 6, grid)) return true;
+                return false;
 
+            case MIDDLE:
+                if(squareIsInvalid(3, 0, grid)) return true;
+                if(squareIsInvalid(3, 3, grid)) return true;
+                if(squareIsInvalid(3, 6, grid)) return true;
+                return false;
+
+            case BOTTOM:
+                if(squareIsInvalid(6,0, grid)) return true;
+                if(squareIsInvalid(6, 3, grid)) return true;
+                if(squareIsInvalid(6, 6, grid)) return true;
+                return false;
+
+            default:
+                return false;
         }
 
         return false;
@@ -79,9 +127,12 @@ public class GameLogic
 
     }
 
-    private static boolean collectionHasRepeats(List<Integer> square)
+    private static boolean collectionHasRepeats(List<Integer> collection)
     {
-
+        for(int i = 1; i <= sudokuMain.gridBounds; i++)
+        {
+            if(Collections.frequency(collection, i) > 1) return true;
+        }
 
         return false;
     }
