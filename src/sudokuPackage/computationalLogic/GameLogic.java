@@ -24,7 +24,6 @@ public class GameLogic
         return GameState.FINISHED;
     }
 
-
     public static boolean sudokuIsInvalid(int[][] grid)
     {
         if(rowsAreInvalid(grid)) return true;
@@ -100,7 +99,6 @@ public class GameLogic
                 return false;
         }
 
-        return false;
     }
 
     private static boolean squareIsInvalid(int x, int y, int[][] grid)
@@ -136,7 +134,6 @@ public class GameLogic
 
         return false;
     }
-
 
     private static boolean tilesAreNotFilled(int[][] grid)
     {

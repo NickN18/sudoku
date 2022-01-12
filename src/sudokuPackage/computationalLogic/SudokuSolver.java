@@ -21,7 +21,7 @@ public class SudokuSolver
             {
                 puzzle[current.getX()][current.getY()] = input;
 
-                if(GameLogic.sudokuIsInvalid(puzze))
+                if(GameLogic.sudokuIsInvalid(puzzle))
                 {
                     if(index == 0 && input == sudokuMain.gridBounds)
                     {
