@@ -33,7 +33,7 @@ public class ControlLogic implements IUserInterfaceContract.EventListener
             int[][] newGameState = gameData.getCopyOfGridState();
             newGameState[row][col] = input;
 
-            gameData = new SudokuApp( GameLogic.checkCompletion(newGameState), newGameState);
+            gameData = new SudokuApp(GameLogic.checkCompletion(newGameState), newGameState);
 
             storage.updateGameGrid(gameData);
 

@@ -1,6 +1,4 @@
-plugins {
-    id 'java'
-}
+apply plugin: 'java'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -18,5 +16,5 @@ sourceSets {
 }
 
 dependencies {
-    compile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
 }
